@@ -15,5 +15,5 @@ public class User {
     private String userPassword;
     private String userSex;
     private int userAge;
-    private int userPhone;
+    private String userPhone;
 }

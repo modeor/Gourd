@@ -9,6 +9,11 @@ spring:
       url: jdbc:mysql://localhost:3306/gourd-base?serverTimezone=UTC
       username: root
       password: hd_123123!
+  devtools:
+    livereload:
+      enabled: false
+    restart:
+      additional-paths: mappers/**
 mybatis:
   #  mybatis主配置文件所在路径
   config-location: classpath:mybatis.cfg.xml
