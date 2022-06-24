@@ -1,4 +1,4 @@
-package com.gourd.gourdbase.entity;
+package com.gourd.gourdbase.model.po;
 
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableId;

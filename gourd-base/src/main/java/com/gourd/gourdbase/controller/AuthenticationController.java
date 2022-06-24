@@ -1,9 +1,11 @@
 package com.gourd.gourdbase.controller;
 
-import com.gourd.gourdbase.entity.AuthenticationInfo;
-import com.gourd.gourdbase.entity.ResultVO;
-import com.gourd.gourdbase.service.LoginService;
+import com.gourd.gourdbase.model.AuthenticationInfo;
+import com.gourd.gourdbase.model.vo.AuthenticationVO;
+import com.gourd.gourdbase.model.vo.ResultVO;
+import com.gourd.gourdbase.service.AuthenticationService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -20,21 +22,18 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/authentication")
 public class AuthenticationController {
 
+    private final AuthenticationService authenticationService;
+
     @Autowired
-    LoginService loginService;
+    public AuthenticationController(AuthenticationService authenticationService) {
+        this.authenticationService = authenticationService;
+    }
 
     @RequestMapping("/login")
-    public ResultVO login(){
+    public ResultVO login(@RequestBody AuthenticationVO param){
         ResultVO<AuthenticationInfo> resultVO = new ResultVO<>();
         try {
-            AuthenticationInfo authenticationInfo=loginService.login();
-            if (authenticationInfo != null) {
-                resultVO.setCode(200);
-                resultVO.setData(authenticationInfo);
-            }else {
-                resultVO.setCode(400);
-                resultVO.setMsg("登录失败");
-            }
+            authenticationService.login(param);
         }catch (Exception e){
             resultVO.setCode(400);
             resultVO.setMsg("系统错误");

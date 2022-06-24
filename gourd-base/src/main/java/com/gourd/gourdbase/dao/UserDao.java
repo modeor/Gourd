@@ -1,13 +1,15 @@
 package com.gourd.gourdbase.dao;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
-import com.gourd.gourdbase.entity.User;
-import org.apache.ibatis.annotations.Mapper;
+import com.gourd.gourdbase.model.po.User;
+import org.springframework.stereotype.Repository;
 
+import javax.annotation.Resource;
 import java.util.List;
 
-@Mapper
+@Repository
 public interface UserDao extends BaseMapper<User> {
     List getInfo();
 
+    User selectByUserName(String userName);
 }

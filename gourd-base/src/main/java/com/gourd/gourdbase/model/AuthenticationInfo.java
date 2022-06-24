@@ -1,4 +1,4 @@
-package com.gourd.gourdbase.entity;
+package com.gourd.gourdbase.model;
 
 /**
  * @ClassName: AuthenticationInfo

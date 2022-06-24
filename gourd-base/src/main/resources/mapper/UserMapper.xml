@@ -1,10 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.gourd.gourdbase.dao.UserDao">
-<select id="getInfo" resultType="arraylist">
-    select * from user
-</select>
 
+    <sql id="SQL_FIELD">
+        user_id
+        ,user_no,user_name,user_password,user_sex,user_age,user_phone
+    </sql>
 
+    <select id="getInfo" resultType="arraylist">
+        select *
+        from user
+    </select>
+
+    <select id="selectByUserName" resultType="com.gourd.gourdbase.model.po.User">
+        select
+        <include refid="SQL_FIELD"></include>
+        from user where user_name=${username}
+    </select>
 
 </mapper>

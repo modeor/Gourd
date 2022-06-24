@@ -9,7 +9,7 @@ import org.springframework.context.annotation.ComponentScan;
 @MapperScan(basePackages = "com.gourd.gourdbase.dao")
 public class GourdBaseApplication {
 
-    public static void main(String[] args) {
+    public static void   main(String[] args) {
         SpringApplication.run(GourdBaseApplication.class, args);
     }
 
