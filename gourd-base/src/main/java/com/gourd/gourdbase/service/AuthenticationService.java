@@ -10,7 +10,6 @@ import org.springframework.stereotype.Service;
  * @date: 2022-06-23 11:21
  * @Version: 1.0
  **/
-@Service
 public interface AuthenticationService {
 
     String  login(AuthenticationVO param);
