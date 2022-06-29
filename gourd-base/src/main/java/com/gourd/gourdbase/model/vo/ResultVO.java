@@ -1,7 +1,6 @@
 package com.gourd.gourdbase.model.vo;
 
 import com.gourd.gourdbase.common.Constants;
-import jdk.nashorn.internal.objects.annotations.Constructor;
 import lombok.Data;
 
 /**
