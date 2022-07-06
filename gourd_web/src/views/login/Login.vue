@@ -29,7 +29,10 @@
       <!-- <el-checkbox v-model="checked"
                    class="rememberme">记住密码</el-checkbox> -->
       <el-form-item style="width: 100%">
-        <el-button type="primary" style="width: 48%" @click.prevent="reset"
+        <el-button
+          type="primary"
+          style="width: 48%"
+          @click.native.prevent="reset"
           >重 置</el-button
         >
         <el-button
@@ -45,7 +48,7 @@
 </template>
 
 <script>
-import Cookies from "js-cookie";
+import Cookies from 'js-cookie'
 
 export default {
   name: 'LoginView',
@@ -54,7 +57,7 @@ export default {
       logining: false,
       user: {
         username: '',
-        password: '123456',
+        password: '123456'
       },
       rules: {
         username: [{ required: true, message: '请输入账号', trigger: 'blur' }],
@@ -65,33 +68,30 @@ export default {
   },
   methods: {
     login () {
-      let userInfo = { username: this.user.username, password: this.user.password }
+      const userInfo = { username: this.user.username, password: this.user.password }
 
       this.$refs.user.validate((valid) => {
         if (valid) {
-          this.logining = true;
+          this.logining = true
           this.$api.post({ url: '?s=App.User_User.Login', param: userInfo }).then((res) => {
             if (res.ret === 200) {
-              Cookies.set('token', res.data.token) // 放置token到Cookie 
-              sessionStorage.setItem('user', userInfo.username)//保存用户到本地会话
-              this.$router.push({ path: '/infomation' });  // 登录成功，跳转到主页
+              Cookies.set('token', res.data.token) // 放置token到Cookie
+              sessionStorage.setItem('user', userInfo.username)// 保存用户到本地会话
+              this.$router.push({ path: '/infomation' }) // 登录成功，跳转到主页
             } else {
-              this.logining = false;
+              this.logining = false
             }
-
-
           }).catch(function (res) {
-            alert(res);
-          });
-
+            alert(res)
+          })
         } else {
-          console.log('error submit!');
-          return false;
+          console.log('error submit!')
+          return false
         }
       })
     }
   }
-};
+}
 </script>
 
 <style scoped>
