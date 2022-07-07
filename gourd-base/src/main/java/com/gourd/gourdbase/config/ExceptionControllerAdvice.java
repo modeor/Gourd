@@ -1,5 +1,6 @@
 package com.gourd.gourdbase.config;
 
+import com.gourd.gourdbase.exception.APIException;
 import com.gourd.gourdbase.model.vo.ResultVO;
 import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
@@ -27,5 +28,17 @@ public class ExceptionControllerAdvice {
     public ResultVO<String> MethodArgumentNotValidExceptionHandler(MethodArgumentNotValidException e){
         ObjectError error = e.getBindingResult().getAllErrors().get(0);
         return ResultVO.buildValidateFailedResult(error.getDefaultMessage());
+    }
+
+    /**
+     * @description: 自定义异常处理
+     * @author: hx
+     * @date:  10:48
+     * @param: [e]
+     * @return: [com.gourd.gourdbase.model.vo.ResultVO<java.lang.String>,TODO]
+     **/
+    @ExceptionHandler(APIException.class)
+    public ResultVO<String> APIExceptionHandler(APIException e) {
+        return  ResultVO.buildFailedResult(e.getMsg());
     }
 }

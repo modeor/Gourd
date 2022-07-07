@@ -31,5 +31,8 @@ public class ResultVO<T> {
     public static<T> ResultVO buildValidateFailedResult(T data) {
         return new ResultVO<T>(Constants.ResultCode.VALIDATE_FAILED, data);
     }
+    public static<T> ResultVO buildFailedResult(T data) {
+        return new ResultVO<T>(Constants.ResultCode.FAILED, data);
+    }
 
 }

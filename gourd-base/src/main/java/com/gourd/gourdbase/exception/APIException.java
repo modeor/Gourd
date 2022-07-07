@@ -1,5 +1,7 @@
 package com.gourd.gourdbase.exception;
 
+import lombok.Data;
+
 /**
  * @ClassName: APIException
  * @Description: 接口异常类
@@ -7,6 +9,7 @@ package com.gourd.gourdbase.exception;
  * @date: 2022-06-28 15:38
  * @Version: 1.0
  **/
+@Data
 public class APIException extends RuntimeException {
     private int code;
     private String msg;

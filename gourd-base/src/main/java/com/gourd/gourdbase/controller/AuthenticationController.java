@@ -2,12 +2,8 @@ package com.gourd.gourdbase.controller;
 
 import com.gourd.gourdbase.model.AuthenticationInfo;
 import com.gourd.gourdbase.model.vo.AuthenticationVO;
-import com.gourd.gourdbase.model.vo.ResultVO;
-import com.gourd.gourdbase.security.utils.JwtUtil;
 import com.gourd.gourdbase.service.AuthenticationService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.validation.BindingResult;
-import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -26,19 +22,16 @@ import javax.validation.Valid;
 @RequestMapping("/authentication")
 public class AuthenticationController {
 
-//    private final AuthenticationService authenticationService;
-//
-//    @Autowired
-//    public AuthenticationController(AuthenticationService authenticationService) {
-//        this.authenticationService = authenticationService;
-//    }
+    private final AuthenticationService authenticationService;
+
+    @Autowired
+    public AuthenticationController(AuthenticationService authenticationService) {
+        this.authenticationService = authenticationService;
+    }
 
     @RequestMapping("/login")
-    public String  login(@Valid @RequestBody AuthenticationVO user) {
-        if ("admin".equals(user.getUserName())&&"123456".equals(user.getPassword())){
-            return JwtUtil.generate(user.getUserName());
-        }
-        return "登录失败";
+    public String  login(@Valid @RequestBody AuthenticationVO userParam) {
+        return authenticationService.login(userParam);
 //        ResultVO<AuthenticationInfo> resultVO = new ResultVO<>();
 //        try {
 //            authenticationService.login(param);
