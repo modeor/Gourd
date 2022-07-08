@@ -40,6 +40,7 @@ module.exports = {
       '/api': {
         // 这里就改成本地的接口路径
         target: 'http://localhost:8080',
+        ws: true,
         changeOrigin: true,
         pathRewrite: {
           '^/api': ''

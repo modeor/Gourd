@@ -6,9 +6,12 @@ import com.gourd.gourdbase.service.AuthenticationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.validation.Valid;
+import java.util.HashMap;
+import java.util.Map;
 
 
 /**
@@ -42,6 +45,17 @@ public class AuthenticationController {
 //        return resultVO;
 
     }
+
+    @RequestMapping("/getInfo")
+    public Map getInfo(@RequestParam String  token) {
+        HashMap<String ,String> map = new HashMap<>();
+        map.put("roles", "admin");
+        map.put("menus", "");
+        map.put("avatar", "");
+        map.put("name", "");
+        return map;
+    }
+
     @RequestMapping("/register")
     public String  register(@Valid @RequestBody AuthenticationVO user) {
         

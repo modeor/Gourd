@@ -26,18 +26,19 @@ public class AuthenticationInterceptor implements HandlerInterceptor {
         if ("/authentication/login".equals(request.getRequestURI())) {
             return true;
         }
-        //从请求头中获取token
-        Claims claims = JwtUtil.parse(request.getHeader("Authorization"));
-        //TODO 目前存在就视为登录，后续要修改为token校验后才视为登录
-        if (claims != null) {
-            return true;
-        }
-        response.setContentType("application/json;charset=utf-8");
-        PrintWriter out = response.getWriter();
-        out.write("请先登录");
-        out.flush();
-        out.close();
-        return false;
+//        //从请求头中获取token
+//        Claims claims = JwtUtil.parse(request.getHeader("Authorization"));
+//        //TODO 目前存在就视为登录，后续要修改为token校验后才视为登录
+//        if (claims != null) {
+//            return true;
+//        }
+//        response.setContentType("application/json;charset=utf-8");
+//        PrintWriter out = response.getWriter();
+//        out.write("请先登录");
+//        out.flush();
+//        out.close();
+//        return false;
+        return true;
     }
 
     @Override
